@@ -1,18 +1,18 @@
-# Container `container_template.sif`
+# Container `ldpred2.sif`
 
-Specific information about the `container_template.sif` file goes here.
+Specific information about the `ldpred2.sif` file goes here.
 Modify as needed.
 
-You may use the ``container_template.sif`` container file to familirize yourself with [Singularity](<https://sylabs.io/docs/>),
+You may use the ``ldpred2.sif`` container file to familirize yourself with [Singularity](<https://sylabs.io/docs/>),
 and the way it works on your secure HPC environment (TSD, Bianca, Computerome, or similar).
 This singularity container is indented as a demo.
 It only contains Python 3.10.
 
 ## Getting Started
 
-* Download ``container_template.sif`` from [here](https://github.com/espenhgn/container_template/tree/main/containers)
+* Download ``ldpred2.sif`` from [here](https://github.com/espenhgn/ldpred2/tree/main/containers)
 * Import these files to your secure HPC environment
-* Run ``singularity exec --no-home container_template.sif python3 --help``, to validate that you can run singularity. This command is expected to produce the standard python help message, starting like this:
+* Run ``singularity exec --no-home ldpred2.sif python3 --help``, to validate that you can run singularity. This command is expected to produce the standard python help message, starting like this:
 
 ```
 usage: /usr/local/bin/python [option] ... [-c cmd | -m mod | file | -] [arg] ...
@@ -46,18 +46,18 @@ There are several ways to give singularity container access to your data. Here a
 1. The command
    
    ```
-   singularity exec --home $PWD:/home container_template.sif python -c "import os; print(f'Hello World from {os.getcwd()}')"
+   singularity exec --home $PWD:/home ldpred2.sif python -c "import os; print(f'Hello World from {os.getcwd()}')"
    ```
    
    will map your present workding directory (`$PWD`) into ``/home`` directory within the container, and set it as active working directory.
    In this way in your python command you can refer to the files as if they are in your local folder without specifying the path.
 
-2. Now, let's assume that instead of downloading the ``container_template.sif`` container file you've cloned the entire github repo
-   (``git clone git@github.com:espenhgn/container_template.git``), have built and pushed the container, and have transfered it to your HPC environment.
-   Then change your folder to the root of the ``container_template`` repository, and run these commands:
+2. Now, let's assume that instead of downloading the ``ldpred2.sif`` container file you've cloned the entire github repo
+   (``git clone git@github.com:espenhgn/ldpred2.git``), have built and pushed the container, and have transfered it to your HPC environment.
+   Then change your folder to the root of the ``ldpred2`` repository, and run these commands:
 
    ```
-   singularity exec --bind reference/:/ref:ro,out_dir:/out:rw singularity/container_template.sif python ...
+   singularity exec --bind reference/:/ref:ro,out_dir:/out:rw singularity/ldpred2.sif python ...
    ```
 
    Note that input paths are relative to the current folder. Also, we specified ``ro`` and ``rw`` access, to have reference data as read-only,
@@ -66,7 +66,7 @@ There are several ways to give singularity container access to your data. Here a
 3. Run 
 
    ```
-   singularity shell --home $PWD:/home -B $(pwd)/data:/data container_template.sif
+   singularity shell --home $PWD:/home -B $(pwd)/data:/data ldpred2.sif
    ``` 
    
    to use singularity in interactive mode.
@@ -77,18 +77,18 @@ There are several ways to give singularity container access to your data. Here a
 
 ## Running as SLURM job
 
-* Run singularity container within SLURM job scheduler, by creating a ``container_template_job.sh`` file (by adjusting the example below), and running ``sbatch container_template_job.sh``:
+* Run singularity container within SLURM job scheduler, by creating a ``ldpred2_job.sh`` file (by adjusting the example below), and running ``sbatch ldpred2_job.sh``:
 
   ```
   #!/bin/bash
-  #SBATCH --job-name=container_template
+  #SBATCH --job-name=ldpred2
   #SBATCH --account=$PROEJCT
   #SBATCH --time=00:10:00
   #SBATCH --cpus-per-task=1
   #SBATCH --mem-per-cpu=8000M
   module load singularity/3.7.1
-  singularity exec --no-home container_template.sif python -c "print('Hello World')"
-  singularity exec --home $PWD:/home container_template.sif python -c "print('Hello Moon')"
+  singularity exec --no-home ldpred2.sif python -c "print('Hello World')"
+  singularity exec --home $PWD:/home ldpred2.sif python -c "print('Hello Moon')"
   ```
 
-Please [let us know](https://github.com/espenhgn/container_template/issues/new) if you face any problems.
+Please [let us know](https://github.com/espenhgn/ldpred2/issues/new) if you face any problems.

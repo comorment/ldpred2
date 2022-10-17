@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     # old variables which will be renamed
     OLDNAME = 'espenhgn'
-    OLDPROJECT = 'container_template'
+    OLDPROJECT = 'ldpred2'
 
     while True:
         response = input('Is this correct (yes/no)? ')

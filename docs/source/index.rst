@@ -13,7 +13,7 @@ Welcome to template's documentation!
 
 .. include:: _readme.md
 
-.. mdinclude:: ../container_template.md
+.. mdinclude:: ../ldpred2.md
 
 Indices and tables
 ==================
