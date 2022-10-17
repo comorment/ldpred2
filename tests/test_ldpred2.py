@@ -20,17 +20,24 @@ try:
     PREFIX = f'singularity run {pth}'
 except FileNotFoundError:    
     try:
-        out = subprocess.run('dockr')
+        out = subprocess.run('docker')
         PREFIX = 'docker run -p 5001:5001 ldpred2'
     except FileNotFoundError:
         raise FileNotFoundError('Neither `singularity` nor `docker` found in PATH. Can not run tests!')
 
-def test_assert():
-    """dummy test that should pass"""
-    assert True
 
-def test_ldpred2_python():
-    """test that the Python installation works"""
-    call = f'{PREFIX} python --version'
+def test_ldpred2_R():
+    call = f'{PREFIX} R --version'
+    out = subprocess.run(call.split(' '))
+    assert out.returncode == 0
+
+def test_ldpred2_Rscript():
+    call = f'{PREFIX} Rscript --version'
+    out = subprocess.run(call.split(' '))
+    assert out.returncode == 0
+
+def test_ldpred2_R_libraries():
+    pwd = os.getcwd()
+    call = f'singularity run --home={pwd} {pth} Rscript {pwd}/tests/extras/libraries.R'
     out = subprocess.run(call.split(' '))
     assert out.returncode == 0

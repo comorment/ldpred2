@@ -15,4 +15,4 @@ trap 'exit' ERR
 chown $(logname) $1.sif && \
 chgrp $(logname) $1.sif && \
 chmod 664 $1.sif && \
-mv $1.sif ../singularity/.
+mv $1.sif ../containers/.

@@ -1,20 +1,8 @@
 # ldpred2 project
 
-README info goes here. Modify for your own project's needs.
+Singularity container (via Docker image) build scripts for running statistical analysis using R and LDpred2.  
 
-# Important! - post initial setup steps
-
-After setting up project from the template, add files, commit and push the changes after running the setup script (`scripts/init.py`):
-
-```
-git add <file1> <file2> ...
-git commit -a -m "initial setup"
-git push
-```
-
-The remaining codes may then be added to and be modified further to suit the requirements of the `<ldpred2>` project. 
-
-# Important! - Set up Git LFS
+##Set up Git LFS
 
 Container files may get large and one should never add large binary files (.sif, .zip, .tar.gz, .mat, .dat, etc.) in [git](https://git-scm.com) repositories directly, mainly files that can be parsed as raw text files (code files, etc.).
 [**Git Large File Storage** (LFS)](https://git-lfs.github.com) should be used instead.
@@ -30,17 +18,17 @@ Revise the `<ldpred2>/.gitattributes` file as necessary. Some common file format
 
 ## Description of available containers
 
-* ``ldpred2`` - a hello-world introductory container setup
+* ``ldpred2`` - a container setup containing R dependencies for LDpred2
 
 ## Software versions
 
 Below is the list of tools included in the different Dockerfile(s) and installer bash scripts for each container.
 Please keep up to date (and update the main `<ldpred2>/README.md` when pushing new container builds):
   
-  | container               | OS/tool             | version
-  | ----------------------- | ------------------- | ----------------------------------------
-  | ldpred2.sif  | ubuntu              | 20.04
-  | ldpred2.sif  | python3             | python 3.10.6
+  | container     | OS/tool             | version
+  | ------------- | ------------------- | ----------------------------------------
+  | ldpred2.sif   | ubuntu              | 20.04
+  | ldpred2.sif   | R                   | 
 
 ## Building/rebuilding containers
 
