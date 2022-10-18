@@ -11,8 +11,16 @@ This repository is used to develop and document [Docker](https://www.docker.com)
   
   | container               | OS/tool             | version
   | ------------------------| ------------------- | ----------------------------------------
-  | ldpred2.sif  | ubuntu              | 20.04
-  | ldpred2.sif  | python              | 3.8.10
+  | ldpred2.sif             | ubuntu              | 20.04
+  | ldpred2.sif             | rocker/verse (R)    | 4.2.1
+  | ldpred2.sif             | devtools            | 2.4.4
+  | ldpred2.sif             | bigreadr            | 0.2.4
+  | ldpred2.sif             | bigsnpr             | 1.10.8
+  | ldpred2.sif             | data.table          | 1.14.2
+  | ldpred2.sif             | dplyr               | 1.0.10
+  | ldpred2.sif             | ggplot2             | 3.3.5
+  | ldpred2.sif             | magrittr            | 2.0.3
+  | ldpred2.sif             | tibble              | 3.1.8
 
 ## Feedback
 
