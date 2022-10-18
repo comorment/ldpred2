@@ -2,7 +2,7 @@
 
 Singularity container (via Docker image) build scripts for running statistical analysis using R and LDpred2.  
 
-##Set up Git LFS
+## Set up Git LFS
 
 Container files may get large and one should never add large binary files (.sif, .zip, .tar.gz, .mat, .dat, etc.) in [git](https://git-scm.com) repositories directly, mainly files that can be parsed as raw text files (code files, etc.).
 [**Git Large File Storage** (LFS)](https://git-lfs.github.com) should be used instead.
