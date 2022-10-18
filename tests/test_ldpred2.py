@@ -24,8 +24,9 @@ port = sock.getsockname()[1]
 try:
     pth = os.path.join('containers', 'ldpred2.sif')
     out = subprocess.run('singularity')
+    cwd = os.getcwd()
     PREFIX = f'singularity run {pth}'
-    PREFIX_MOUNT = PREFIX
+    PREFIX_MOUNT = f'singularity run --home={cwd}:/home/ {pth}'
 except FileNotFoundError:    
     try:
         out = subprocess.run('docker')
@@ -48,7 +49,7 @@ def test_ldpred2_Rscript():
     assert out.returncode == 0
 
 def test_ldpred2_R_libraries():
-    pwd = os.getcwd()
+    pwd = os.getcwd() if PREFIX.rfind('docker') >= 0 else '.'
     call = f'''{PREFIX_MOUNT} Rscript {pwd}/tests/extras/libraries.R'''
     out = subprocess.run(call.split(' '), capture_output=True)
     assert out.returncode == 0
