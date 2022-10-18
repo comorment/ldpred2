@@ -9,7 +9,14 @@ back to ``docker``.
 """
 
 import os
+import socket
 import subprocess
+
+
+# port used by tests
+sock = socket.socket()
+sock.bind(('', 0))
+port = sock.getsockname()[1]
 
 
 # Check that (1) singularity exist, and (2) if not, check for docker. 
@@ -18,10 +25,14 @@ try:
     pth = os.path.join('containers', 'ldpred2.sif')
     out = subprocess.run('singularity')
     PREFIX = f'singularity run {pth}'
+    PREFIX_MOUNT = PREFIX
 except FileNotFoundError:    
     try:
         out = subprocess.run('docker')
-        PREFIX = 'docker run -p 5001:5001 ldpred2'
+        pwd = os.getcwd()
+        PREFIX = f'docker run -p {port}:{port} ldpred2'
+        PREFIX_MOUNT = (f'docker run -p {port}:{port} ' + 
+            f'--mount type=bind,source={pwd},target={pwd} ldpred2')
     except FileNotFoundError:
         raise FileNotFoundError('Neither `singularity` nor `docker` found in PATH. Can not run tests!')
 
@@ -38,6 +49,6 @@ def test_ldpred2_Rscript():
 
 def test_ldpred2_R_libraries():
     pwd = os.getcwd()
-    call = f'singularity run --home={pwd} {pth} Rscript {pwd}/tests/extras/libraries.R'
-    out = subprocess.run(call.split(' '))
+    call = f'''{PREFIX_MOUNT} Rscript {pwd}/tests/extras/libraries.R'''
+    out = subprocess.run(call.split(' '), capture_output=True)
     assert out.returncode == 0
