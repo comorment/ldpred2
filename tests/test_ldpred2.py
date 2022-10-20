@@ -9,6 +9,7 @@ back to ``docker``.
 """
 
 import os
+import pytest
 import socket
 import subprocess
 
@@ -47,6 +48,14 @@ def test_ldpred2_Rscript():
     call = f'{PREFIX} Rscript --version'
     out = subprocess.run(call.split(' '))
     assert out.returncode == 0
+
+
+@pytest.mark.xfail(raises=NotImplementedError, reason="not implemented")
+def test_ldpred2_Rstudio_server():
+    raise NotImplementedError
+    # call = f'{PREFIX} rserver verify-installation'
+    # out = subprocess.run(call.split(' '))
+    # assert out.returncode == 0
 
 def test_ldpred2_R_libraries():
     pwd = os.getcwd() if PREFIX.rfind('docker') >= 0 else '.'
