@@ -33,10 +33,14 @@ Please keep up to date (and update the main `<ldpred2>/README.md` when pushing n
   | ldpred2.sif             | bigreadr            | 0.2.4
   | ldpred2.sif             | bigsnpr             | 1.10.8
   | ldpred2.sif             | data.table          | 1.14.2
+  | ldpred2.sif             | DescTools           | 0.99.46
   | ldpred2.sif             | dplyr               | 1.0.10
   | ldpred2.sif             | ggplot2             | 3.3.5
+  | ldpred2.sif             | fmsb                | 0.7.3
   | ldpred2.sif             | magrittr            | 2.0.3
+  | ldpred2.sif             | reghelper           | 1.1.1
   | ldpred2.sif             | tibble              | 3.1.8
+  | ldpred2.sif             | tidyr               | 1.2.1
 
 ## Building/rebuilding containers
 
