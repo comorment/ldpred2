@@ -19,10 +19,8 @@ RUN R -e "install.packages('devtools', version='2.4.4', repos='http://cran.us.r-
     R -e "require(devtools); install_version('ggplot2', version='3.3.5', repos='http://cran.us.r-project.org')" && \
     R -e "require(devtools); install_version('magrittr', version='2.0.3', repos='http://cran.us.r-project.org')" && \
     R -e "require(devtools); install_version('reghelper', version='1.1.1', repos='http://cran.us.r-project.org')" && \
+    R -e "require(devtools); install_version('runonce', version='0.2.3', repos='http://cran.us.r-project.org')" && \
     R -e "require(devtools); install_version('tibble', version='3.1.8', repos='http://cran.us.r-project.org')" && \
     R -e "require(devtools); install_version('tidyr', version='1.2.1', repos='http://cran.us.r-project.org')"
-
-RUN R -e "require(devtools); install_version('runonce', version='0.2.3', repos='http://cran.us.r-project.org')"
-
 
 WORKDIR /tools
