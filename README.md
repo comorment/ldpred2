@@ -31,7 +31,7 @@ Please keep up to date (and update the main `<ldpred2>/README.md` when pushing n
   | ldpred2.sif             | rocker/verse (R)    | 4.2.1
   | ldpred2.sif             | devtools            | 2.4.4
   | ldpred2.sif             | bigreadr            | 0.2.4
-  | ldpred2.sif             | bigsnpr             | 1.10.8
+  | ldpred2.sif             | bigsnpr             | 1.11.4
   | ldpred2.sif             | data.table          | 1.14.2
   | ldpred2.sif             | DescTools           | 0.99.46
   | ldpred2.sif             | dplyr               | 1.0.10
