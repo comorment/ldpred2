@@ -11,7 +11,7 @@ WORKDIR /tmp
 # CRAN packages
 RUN R -e "install.packages('devtools', version='2.4.4', repos='http://cran.us.r-project.org')" && \
     R -e "require(devtools); install_version('bigreadr', version='0.2.4', repos='http://cran.us.r-project.org')" && \
-    R -e "require(devtools); install_version('bigsnpr', version='1.10.8', repos='http://cran.us.r-project.org')" && \
+    R -e "require(devtools); install_version('bigsnpr', version='1.11.4', repos='http://cran.us.r-project.org')" && \
     R -e "require(devtools); install_version('data.table', version='1.14.2', repos='http://cran.us.r-project.org')" && \
     R -e "require(devtools); install_version('DescTools', version='0.99.46', repos='http://cran.us.r-project.org')" && \
     R -e "require(devtools); install_version('dplyr', version='1.0.10', repos='http://cran.us.r-project.org')" && \
