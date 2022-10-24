@@ -63,7 +63,7 @@ def test_ldpred2_R_libraries():
     out = subprocess.run(call.split(' '), capture_output=True)
     assert out.returncode == 0
 
-def test_ldpred2_plink2_avx2():
+def test_ldpred2_plink2():
     call = f'{PREFIX} plink2 --version'
     out = subprocess.run(call.split(' '))
     assert out.returncode == 0
