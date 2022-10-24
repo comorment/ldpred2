@@ -71,54 +71,54 @@ Note that forming independent LD blocks in LD matrices can be useful for robustn
 Information about the HapMap3+ variants can be retrieved with
 
 ```{r}
-# $pos is in build GRCh37 / hg19, but we provide positions in 2 other builds
-info <- readRDS(runonce::download_file(
-  "https://figshare.com/ndownloader/files/37802721",
-  dir = "tmp-data", fname = "map_hm3_plus.rds"))
-str(info)
+## $pos is in build GRCh37 / hg19, but we provide positions in 2 other builds
+# info <- readRDS(runonce::download_file(
+#   "https://figshare.com/ndownloader/files/37802721",
+#   dir = "tutorial_data", fname = "map_hm3_plus.rds"))
+# str(info)
 ```
 
 ## Downloading genotype data and summary statistics for the tutorial
 
 ```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE, width = 75, max.print = 30)
-knitr::opts_knit$set(global.par = TRUE, root.dir = "..")
-knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', dev = 'png', out.width = "90%")
+# options(htmltools.dir.version = FALSE, width = 75, max.print = 30)
+# knitr::opts_knit$set(global.par = TRUE, root.dir = "..")
+# knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', dev = 'png', out.width = "90%")
 ```
 
 This tutorial uses fake data for educational purposes only.
 Another tutorial using another dataset can be found at <https://privefl.github.io/bigsnpr-extdoc/polygenic-scores-pgs.html>.
 
 You can download [the tutorial data](https://github.com/privefl/bigsnpr/raw/master/data-raw/public-data3.zip) and unzip files in R.
-We store those files in a directory called `"tmp-data"` here.
+We store those files in a directory called `"tutorial_data"` here.
 
 ```{r}
 # install.packages("runonce")
-zip <- runonce::download_file(
-  "https://github.com/privefl/bigsnpr/raw/master/data-raw/public-data3.zip",
-  dir = "tmp-data")
-unzip(zip)
+# zip <- runonce::download_file(
+#   "https://github.com/privefl/bigsnpr/raw/master/data-raw/public-data3.zip",
+#   dir = "tutorial_data")
+# unzip(zip)
 ```
 
 First, you need to read genotype data from the PLINK files (or BGEN files) as well as the text file containing summary statistics.
 
 ```{r, echo=FALSE}
-unlink(paste0("tmp-data/public-data3", c(".bk", ".rds")))
+unlink(paste0("tutorial_data/public-data3", c(".bk", ".rds")))
 ```
 
 ```{r}
 # Read from bed/bim/fam, it generates .bk and .rds files.
-snp_readBed("tmp-data/public-data3.bed")
+# library(bigsnpr)
+# snp_readBed("tutorial_data/public-data3.bed")
 ```
 
-```{r}
+```{r, echo=TRUE}
 # Load packages bigsnpr and bigstatsr
 library(bigsnpr)
 # Read from bed/bim/fam, it generates .bk and .rds files.
-# snp_readBed("tmp-data/public-data3.bed")
+snp_readBed("tutorial_data/public-data3.bed")
 # Attach the "bigSNP" object in R session
-obj.bigSNP <- snp_attach("tmp-data/public-data3.rds")
-# obj.bigSNP <- snp_attach("tmp-data/map_hm3_plus.rds")
+obj.bigSNP <- snp_attach("tutorial_data/public-data3.rds")
 # See how the file looks like
 str(obj.bigSNP, max.level = 2, strict.width = "cut")
 # Get aliases for useful slots
@@ -131,7 +131,7 @@ y   <- obj.bigSNP$fam$affection
 
 ```{r}
 # Read external summary statistics
-sumstats <- bigreadr::fread2("tmp-data/public-data3-sumstats.txt")
+sumstats <- bigreadr::fread2("tutorial_data/public-data3-sumstats.txt")
 str(sumstats)
 ```
 
@@ -198,7 +198,7 @@ We recommend to use a window size of 3 cM (see [the LDpred2 paper](https://doi.o
 
 ```{r}
 # To convert physical positions (in bp) to genetic positions (in cM), use
-# POS2 <- snp_asGeneticPos(CHR, POS, dir = "tmp-data", ncores = NCORES)
+# POS2 <- snp_asGeneticPos(CHR, POS, dir = "tutorial_data", ncores = NCORES)
 # To avoid downloading "large" files, `POS2` has been precomputed here
 POS2 <- obj.bigSNP$map$genetic.dist
 ```
@@ -206,7 +206,7 @@ POS2 <- obj.bigSNP$map$genetic.dist
 Let us create the on-disk sparse genome-wide correlation matrix on-the-fly:
 
 ```{r}
-tmp <- tempfile(tmpdir = "tmp-data")
+tmp <- tempfile(tmpdir = "tutorial_data")
 
 for (chr in 1:22) {
   
@@ -448,7 +448,7 @@ Here, you need `packageVersion("bigsnpr") >= package_version("1.11.4")`.
 Here is [the accompanying preprint](https://doi.org/10.1101/2022.10.10.511629).
 
 ```{r, echo=FALSE, out.width="80%", fig.cap="Overview of what LDpred2-auto can now provide"}
-knitr::include_graphics("https://pbs.twimg.com/media/Fe7ZaIEWYAIklM7?format=png")
+# knitr::include_graphics("https://pbs.twimg.com/media/Fe7ZaIEWYAIklM7?format=png")
 ```
 
 LDpred2-auto has been very recently extended and improved to allow for estimating $h^2$, $p$, and $\alpha$, a third parameter that controls how expected effect sizes relate to minor allele frequencies.

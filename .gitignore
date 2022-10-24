@@ -18,3 +18,9 @@ __pycache__
 
 # Sphinx
 _build
+
+# tutorial script
+LDpred2_cache
+LDpred2_files
+LDpred2.pdf
+Rplots.pdf

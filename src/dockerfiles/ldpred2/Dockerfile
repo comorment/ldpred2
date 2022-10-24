@@ -4,8 +4,14 @@ ENV TZ=Europe
 ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /tmp
-# COPY /scripts/apt_get_essential.sh .
-# RUN bash apt_get_essential.sh
+COPY /scripts/apt_get_essential.sh .
+RUN bash apt_get_essential.sh
+
+# install plink2-avx2
+WORKDIR /tmp
+COPY /scripts/install_plink2_avx2.sh /tmp/
+RUN chmod +x /tmp/install_plink2_avx2.sh
+RUN bash /tmp/install_plink2_avx2.sh
 
 # R packages.
 # CRAN packages
@@ -23,10 +29,5 @@ RUN R -e "install.packages('devtools', version='2.4.4', repos='http://cran.us.r-
     R -e "require(devtools); install_version('tibble', version='3.1.8', repos='http://cran.us.r-project.org')" && \
     R -e "require(devtools); install_version('tidyr', version='1.2.1', repos='http://cran.us.r-project.org')"
 
-# install plink2-avx2
-WORKDIR /tmp
-COPY /scripts/install_plink2_avx2.sh /tmp/
-RUN chmod +x /tmp/install_plink2_avx2.sh
-RUN bash /tmp/install_plink2_avx2.sh
 
 WORKDIR /tools

@@ -36,16 +36,17 @@ options(default.nproc.blas = NULL)
 
 
 ## ---- echo=FALSE---------------------------------------------------------
-unlink(paste0("tutorial_data/public-data3", c(".bk", ".rds")))
+# unlink(paste0("tutorial_data/public-data3", c(".bk", ".rds")))
 
 # Read from bed/bim/fam, it generates .bk and .rds files.
+# library(bigsnpr)
 # snp_readBed("tutorial_data/public-data3.bed")
 
 ## ------------------------------------------------------------------------
 # Load packages bigsnpr and bigstatsr
 library(bigsnpr)
 # Read from bed/bim/fam, it generates .bk and .rds files.
-snp_readBed("tutorial_data/public-data3.bed")
+# snp_readBed("tutorial_data/public-data3.bed")
 # Attach the "bigSNP" object in R session
 obj.bigSNP <- snp_attach("tutorial_data/public-data3.rds")
 # See how the file looks like
