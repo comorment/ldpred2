@@ -1,5 +1,8 @@
 # misc
 .DS_Store
+*.sbk
+*.rds
+*.bk
 
 # bash
 .bash_history
@@ -11,6 +14,7 @@ __pycache__
 
 # R
 .rda
+.Rhistory
 
 # Sphinx
 _build
