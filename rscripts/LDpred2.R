@@ -1,7 +1,8 @@
 ## -----------------------
 # Mock up analysis script modified from https://privefl.github.io/bigsnpr/articles/LDpred2.html
 # 
-# Confer the original file for explainations.
+# Confer the original file for explainations. 
+# This is here just to check that analysis code is not crashing. 
 ## -----------------------
 
 # libraries
