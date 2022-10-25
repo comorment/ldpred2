@@ -12,6 +12,7 @@ import os
 import pytest
 import socket
 import subprocess
+import tempfile
 
 
 # port used by tests
@@ -78,7 +79,7 @@ def test_ldpred2_gctb():
         out = subprocess.run(call.split(' '))
         assert out.returncode == 0
 
-def test_gwas_prsice():
+def test_ldpred2_prsice():
     call = f'singularity run {pth} PRSice --version'
     out = subprocess.run(call.split(' '))
     assert out.returncode == 0

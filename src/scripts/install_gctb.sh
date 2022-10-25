@@ -6,4 +6,4 @@ wget --no-check-certificate https://cnsgenomics.com/software/gctb/download/gctb_
 mv gctb_2.02_Linux/* .
 cp gctb /bin/.
 
-# chmod 755 /bin/gctb
+chmod 755 /bin/gctb

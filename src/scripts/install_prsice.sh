@@ -4,4 +4,7 @@ wget --no-check-certificate https://github.com/choishingwan/PRSice/releases/down
     rm -rf PRSice_linux.zip
 
 cp PRSice_linux /bin/.
+chmod 755 /bin/PRSice_linux
+
 ln -s /usr/bin/PRSice_linux /usr/bin/PRSice
+

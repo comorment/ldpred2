@@ -15,6 +15,7 @@ __pycache__
 # R
 .rda
 .Rhistory
+database.conf
 
 # Sphinx
 _build
@@ -24,3 +25,6 @@ LDpred2_cache
 LDpred2_files
 LDpred2.pdf
 Rplots.pdf
+LDpred2.log
+LDpred2.tex
+
