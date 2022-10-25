@@ -1,24 +1,16 @@
 # rscripts
 
-## LDpred2.R script
-
-We here provide an R script (`LDpred2.R`) which can be executed using built containers either in Docker (locally) or Singularity (HPC) formats.
-The R script is based on an example/tutorial from the [`bigsnpr` GitHub repository](https://github.com/privefl/bigsnpr),
-specifically [R markdown file](https://github.com/privefl/bigsnpr/blob/master/vignettes/LDpred2.Rmd).
-
-Please confer this [tutorial](https://privefl.github.io/bigsnpr/articles/LDpred2.html) for some more detailed explainations of the actual codes.
-
 ## LDpred2.Rmd
 
 We here provide an R markdown file (`LDpred2.Rmd`) which can be executed using built containers either in Docker (locally) or Singularity (typically HPC) formats.
 The R script is based on an example/tutorial from the [`bigsnpr` GitHub repository](https://github.com/privefl/bigsnpr),
 specifically [R markdown file](https://github.com/privefl/bigsnpr/blob/master/vignettes/LDpred2.Rmd).
-**bigsnpr** is released under the GPL-3 license (<https://privefl.github.io/bigsnpr/>).
+**bigsnpr** is released under the GPL-3 license (<https://privefl.github.io/bigsnpr/>), and files provided here retains this license.
 
 Please confer this [tutorial](https://privefl.github.io/bigsnpr/articles/LDpred2.html) for additional explainations of the actual codes.
 
 The main difference from the original file is that data and summary stats files used (in `/tutorial_data/`) is included in this repository
-and do not require any external data to run.
+and should not require any other external data to run.
 
 In order to run the R notebook, issue in the terminal:
 
@@ -43,7 +35,7 @@ This directory includes some files used by the [tutorial](https://privefl.github
 
 ### Docker
 
-Run using Docker container, e.g., for local testing/development without singularity
+Run using [Docker](https://www.docker.com) container, e.g., for local testing/development without Singularity
 
 In case you wish to build the image, clone the entire repository, change directory to this one and issue
 
@@ -53,15 +45,24 @@ docker build -t ldpred2 -f ../src/dockerfiles/ldpred2/Dockerfile .
 
 The build may take some time, and is assigned the ID `ldpred2`.
 
-Then, one may mount the working directory to `/tools/` and run the example using `Rscript` as:
+Then, one may mount the working directory to `/rscripts/` and run the example using `R` as:
 
 ```
-docker run -p 49634:49634 --mount type=bind,source=$(pwd),target=/tools/ ldpred2 Rscript /tools/LDpred2.R
+docker run -p 49634:49634 --mount type=bind,source=$(pwd),target=/home/ ldpred2 R -e "rmarkdown::render('/home/LDpred2.Rmd')"
 ```
 
 ### Singularity
 
-TODO: document singularity
+Get familiar with Singularity:
+
+* ["singularity shell" options](https://sylabs.io/guides/3.2/user-guide/cli/singularity_shell.html#options)
+* [Bind paths and mounts](https://sylabs.io/guides/3.2/user-guide/bind_paths_and_mounts.html).
+
+In order to run the example from the terminal using Singularity, issue:
+
+```
+singularity exec --home $PWD:/home ../containers/ldpred2.sif R -e "rmarkdown::render('/home/LDpred2.Rmd')"
+```
 
 ### Singularity + Slurm
 
