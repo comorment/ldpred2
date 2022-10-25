@@ -67,3 +67,18 @@ def test_ldpred2_plink2():
     call = f'{PREFIX} plink2 --version'
     out = subprocess.run(call.split(' '))
     assert out.returncode == 0
+
+def test_ldpred2_gctb():
+    cwd = os.getcwd()
+    with tempfile.TemporaryDirectory() as d:
+        os.chdir(d)
+        os.system(f'tar -xvf {cwd}/tests/extras/ex.tar.gz')
+        os.chdir(cwd)
+        call = f'singularity run {pth} gctb --bfile {d}/ex --out {d}'
+        out = subprocess.run(call.split(' '))
+        assert out.returncode == 0
+
+def test_gwas_prsice():
+    call = f'singularity run {pth} PRSice --version'
+    out = subprocess.run(call.split(' '))
+    assert out.returncode == 0
