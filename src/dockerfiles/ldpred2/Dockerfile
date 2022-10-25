@@ -31,8 +31,7 @@ RUN R -e "install.packages('devtools', version='2.4.4', repos='http://cran.us.r-
     R -e "require(devtools); install_version('tidyr', version='1.2.1', repos='http://cran.us.r-project.org')"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    texlive-latex-base=2019.20200218-1 \
-    texlive-latex-recommended=2019.20200218-1 \
+    texlive-latex-extra=2019.202000218-1 \
     lmodern=2.004.5-6 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
