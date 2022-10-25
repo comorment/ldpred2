@@ -3,15 +3,16 @@ FROM rocker/verse:4.2.1
 ENV TZ=Europe
 ENV DEBIAN_FRONTEND noninteractive
 
+# install essential deps
 WORKDIR /tmp
 COPY /scripts/apt_get_essential.sh .
-RUN bash apt_get_essential.sh
+RUN bash apt_get_essential.sh && \
+    rm apt_get_essential.sh
 
-# install plink2-avx2
+# install plink2
 WORKDIR /tmp
-COPY /scripts/install_plink2_avx2.sh /tmp/
-RUN chmod +x /tmp/install_plink2_avx2.sh
-RUN bash /tmp/install_plink2_avx2.sh
+COPY /scripts/install_plink2.sh .
+RUN bash install_plink2.sh
 
 # R packages.
 # CRAN packages
