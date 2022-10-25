@@ -42,6 +42,17 @@ install.packages("bigsnpr")
 
 -   if you install {bigsnpr} \>= v1.11.4, there is a new version LDpred2-auto that was validated for inferring parameters of genetic architectures (cf. at the end of this tutorial).
 
+## Import `bigsnpr` and `bigreadr` libraries
+
+```{r}
+library(bigsnpr)
+library(bigreadr)
+
+## fix "Error: Two levels of parallelism are used. See `?assert_cores`."
+options(bigstatsr.check.parallel.blas = FALSE)
+options(default.nproc.blas = NULL)
+```
+
 ## Which set of variants to use?
 
 To run LDpred2, you need
@@ -114,7 +125,7 @@ unlink(paste0("tutorial_data/public-data3", c(".bk", ".rds")))
 
 ```{r, echo=TRUE}
 # Load packages bigsnpr and bigstatsr
-library(bigsnpr)
+# library(bigsnpr)
 # Read from bed/bim/fam, it generates .bk and .rds files.
 snp_readBed("tutorial_data/public-data3.bed")
 # Attach the "bigSNP" object in R session
