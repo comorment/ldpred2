@@ -61,9 +61,39 @@ Get familiar with Singularity:
 In order to run the example from the terminal using Singularity, issue:
 
 ```
-singularity exec --home $PWD:/home ../containers/ldpred2.sif R -e "rmarkdown::render('/home/LDpred2.Rmd')"
+export SIF=$PWD/../containers/ldpred2.sif  # point to ldpred2.sif file
+export R="singularity exec --home=$PWD:/home $SIF R"  # invokes R binding the working directory as "home" directory
+$R -e "rmarkdown::render('LDpred2.Rmd')"  # Run Rmd file using R
 ```
 
 ### Singularity + Slurm
 
-TODO: document `LDpred2_slurm.job`
+For running the script on a HPC facility with the [SLURM](https://slurm.schedmd.com/quickstart.html) scheduler that also use Singularity , 
+first we create a job script (`LDpred2_slurm.job`) as:
+```
+#!/bin/bash
+#SBATCH --job-name=LDpred2  # job name
+#SBATCH --output=LDred2.txt  # R output
+#SBATCH --error=LDpred2.txt  # errors
+#SBATCH --account=$ACCOUNT  # project ID
+#SBATCH --time=00:15:00  # walltime
+#SBATCH --cpus-per-task=1  # number of CPUS for task
+#SBATCH --mem-per-cpu=2000  # memory (MB)
+
+module load singularity  # load singularity
+
+export SIF=$PWD/../containers/ldpred2.sif  # point to container file
+export R="singularity exec --home=$PWD:/home $SIF R"  # alias for R
+$R -e "rmarkdown::render('LDpred2.Rmd')"  # execute script
+```
+
+To submit the job, first export the ID of the compute time/project, and call `sbatch` as:
+```
+export ACCOUNT=<project ID>
+sbatch LDPred2_slurm.job
+```
+
+Running jobs can then be listed issuing `watch squeue -u $USER`. 
+The submitted job will include `LDpred2` in the `NAME` column. 
+If nothing is listed the job either finished or terminated due to an error.
+R output and error messages will be logged to the file `LDpred2.txt` in this directory. 
