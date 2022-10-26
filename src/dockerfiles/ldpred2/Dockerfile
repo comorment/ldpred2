@@ -39,13 +39,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # gctb
 WORKDIR /tmp/gctb
 COPY /scripts/install_gctb.sh /tmp
-RUN bash /tmp/install_gctb.sh
-RUN rm -rf /tmp/*
+RUN bash /tmp/install_gctb.sh && \
+    rm -rf /tmp/*
 
 # prsice
 WORKDIR /tmp/prsice
 COPY /scripts/install_prsice.sh /tmp
-RUN bash /tmp/install_prsice.sh
-RUN rm -rf /tmp/*
+RUN bash /tmp/install_prsice.sh && \
+    rm -rf /tmp/*
 
 WORKDIR /tools
