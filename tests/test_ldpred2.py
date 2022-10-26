@@ -38,7 +38,7 @@ except FileNotFoundError:
                         f'--mount type=bind,source={pwd},target={pwd} ldpred2')
     except FileNotFoundError:
         raise FileNotFoundError(
-            'Neither `singularity` nor `docker` found in PATH. Can not run tests!')
+            'Neither `singularity` nor `docker` found in PATH!')
 
 
 def test_ldpred2_R():
