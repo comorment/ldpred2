@@ -1,8 +1,8 @@
-# rscripts
+# examples
 
 ## LDpred2.Rmd
 
-We here provide an R markdown file (`LDpred2.Rmd`) which can be executed using built containers either in Docker (locally) or Singularity (typically HPC) formats.
+We here provide an R markdown file (`LDpred2.Rmd`) which can be executed using R directly, or built containers either in Docker (locally) or Singularity (typically HPC) formats.
 The R script is based on an example/tutorial from the [`bigsnpr` GitHub repository](https://github.com/privefl/bigsnpr),
 specifically [R markdown file](https://github.com/privefl/bigsnpr/blob/master/vignettes/LDpred2.Rmd).
 **bigsnpr** is released under the GPL-3 license (<https://privefl.github.io/bigsnpr/>), and files provided here retains this license.
@@ -16,6 +16,14 @@ In order to run the R notebook, issue in the terminal:
 
 ```
 R -e "rmarkdown::render('LDpred2.Rmd')"
+```
+
+Opening the file in Rstudio and executing it in this environment should also work. 
+
+Installing missing packages from [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) may be performed via the Rstudio GUI or in the terminal as
+
+```
+R -e "install.packages('<missing-package>', version='X.Y.Z', repos='http://cran.us.r-project.org')"
 ```
 
 ### Output
