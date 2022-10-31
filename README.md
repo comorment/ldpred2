@@ -49,6 +49,36 @@ Please keep up to date (and update the main `<ldpred2>/README.md` when pushing n
 
 The directory `<ldpred2>/example` provides an example running the LDPred2 analysis. See README within.
 
+## Software
+
+The container(s) provided here includes additional command line tools in addition to the R environment.
+It is possible to create short cuts (aliases) for use in a terminal by issuing
+```
+export SIF=$PWD/containers/ldpred2.sif  # point to container file
+
+# R
+alias R="singularity exec --home=$PWD:/home $SIF R"
+R -e <script.R>  # execute script
+
+# plink
+alias plink2="singularity exec --home=$PWD:/home $SIF plink2"
+plink2 --arg1=<arg1> --arg2=<arg2>  # etc.
+
+# gctb
+alias gctb="singularity exec --home=$PWD:/home $SIF gctb"
+gctb --arg1=<arg1> --arg2=<arg2>  # etc.
+
+# PRSice
+alias PRSice="singularity exec --home=$PWD:/home $SIF PRSice"
+PRSice --arg1=<arg1> --arg2=<arg2>  # etc.
+```
+
+And so forth.
+
+The aliases will remain for the duration of the terminal session. 
+If you want them to stay for the next session, define them in your ``~/.bashrc`` or equivalent file.
+Make sure that the the path to the container file ``ldpred2.sif`` is correct. 
+
 
 ## Building/rebuilding containers
 
