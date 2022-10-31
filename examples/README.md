@@ -91,8 +91,8 @@ first we create a job script (`LDpred2_slurm.job`) as:
 module load singularity  # load singularity
 
 export SIF=$PWD/../containers/ldpred2.sif  # point to container file
-alias R="singularity exec --home=$PWD:/home $SIF R"  # alias for R
-R -e "rmarkdown::render('LDpred2.Rmd')"  # execute script
+export R="singularity exec --home=$PWD:/home $SIF R"  # alias for R
+$R -e "rmarkdown::render('LDpred2.Rmd')"  # execute script
 ```
 
 To submit the job, first export the ID of the compute time/project, and call `sbatch` as:

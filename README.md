@@ -49,10 +49,10 @@ Please keep up to date (and update the main `<ldpred2>/README.md` when pushing n
 
 The directory `<ldpred2>/example` provides an example running the LDPred2 analysis. See README within.
 
-## Software
+## Software aliases
 
 The container(s) provided here includes additional command line tools in addition to the R environment.
-It is possible to create short cuts (aliases) for use in a terminal by issuing
+It is possible to create short cuts (aliases) for interactive use in a terminal by issuing
 ```
 export SIF=$PWD/containers/ldpred2.sif  # point to container file
 
@@ -79,6 +79,19 @@ The aliases will remain for the duration of the terminal session.
 If you want them to stay for the next session, define them in your ``~/.bashrc`` or equivalent file.
 Make sure that the the path to the container file ``ldpred2.sif`` is correct. 
 
+## Software environment variables
+
+Similar to the aliases defined above, one can define environment variables and use them as
+
+```
+export SIF=$PWD/containers/ldpred2.sif  # point to container file
+export <BINARY>="singularity exec --home=$PWD:/home $SIF <BINARY>"
+$<BINARY> --arg1=<arg1> --arg2=<arg2>  # etc.
+```
+
+Replace ``<BINARY>`` by ``R``, ``plink2``, etc.
+
+This method can be more reliable for instance in Slurm job scripts (see examples directory)
 
 ## Building/rebuilding containers
 
