@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=LDpred2  # job name
-#SBATCH --output=LDred2.txt  # R output
+#SBATCH --output=LDpred2.txt  # R output
 #SBATCH --error=LDpred2.txt  # errors
 #SBATCH --account=$SBATCH_ACCOUNT  # project ID
 #SBATCH --time=00:15:00  # walltime
