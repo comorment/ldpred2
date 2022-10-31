@@ -69,9 +69,9 @@ Get familiar with Singularity:
 In order to run the example from the terminal using Singularity, issue:
 
 ```
-export SIF=$PWD/../containers/ldpred2.sif  # point to ldpred2.sif file
+export SIF=$PWD/../containers/ldpred2.sif  # point to ldpred2.sif file. Modify as needed.
 export R="singularity exec --home=$PWD:/home $SIF R"  # invokes R binding the working directory as "home" directory
-$R -e "rmarkdown::render('LDpred2.Rmd')"  # Run Rmd file using R
+$R -e "rmarkdown::render('LDpred2.Rmd')"  # Run .Rmd file using R
 ```
 
 ### Singularity + Slurm
@@ -81,9 +81,9 @@ first we create a job script (`LDpred2_slurm.job`) as:
 ```
 #!/bin/bash
 #SBATCH --job-name=LDpred2  # job name
-#SBATCH --output=LDred2.txt  # R output
+#SBATCH --output=LDpred2.txt  # R output
 #SBATCH --error=LDpred2.txt  # errors
-#SBATCH --account=$ACCOUNT  # project ID
+#SBATCH --account=$SBATCH_ACCOUNT  # project ID
 #SBATCH --time=00:15:00  # walltime
 #SBATCH --cpus-per-task=1  # number of CPUS for task
 #SBATCH --mem-per-cpu=2000  # memory (MB)
@@ -97,7 +97,7 @@ $R -e "rmarkdown::render('LDpred2.Rmd')"  # execute script
 
 To submit the job, first export the ID of the compute time/project, and call `sbatch` as:
 ```
-export ACCOUNT=<project ID>
+export SBATCH_ACCOUNT=<project ID>  # could be useful to put in ~/.bashrc or equivalent file
 sbatch LDPred2_slurm.job
 ```
 
@@ -105,3 +105,16 @@ Running jobs can then be listed issuing `watch squeue -u $USER`.
 The submitted job will include `LDpred2` in the `NAME` column. 
 If nothing is listed the job either finished or terminated due to an error.
 R output and error messages will be logged to the file `LDpred2.txt` in this directory. 
+
+
+### Read only file systems
+
+The codes provided here may be on a read-only file system (e.g., on a partition on a secure cluster). 
+In order to use them, copy the codes to a file system location where you may have write access, 
+e.g., a `$PROJECT`, `$WORK`, `$HOME`, `$SCRATCH` or similar area. 
+Syncing the files to another location may be done using the `rsync` utility 
+(here creating a local copy in the `$HOME` directory):
+```
+rsync -avh <absolute/path/to/ldpred2> $HOME
+```
+Then, all files should be present in the the directory `$HOME/ldpred2`. 

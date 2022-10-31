@@ -18,7 +18,7 @@ Revise the `<ldpred2>/.gitattributes` file as necessary. Some common file format
 
 ## Description of available containers
 
-* ``ldpred2`` - a container setup containing R dependencies for LDpred2
+* ``ldpred2`` - a container setup containing R dependencies for LDpred2 plus other tools for genetic analysis
 
 ## Software versions
 
@@ -43,6 +43,11 @@ Please keep up to date (and update the main `<ldpred2>/README.md` when pushing n
   | ldpred2.sif             | tidyr (R)           | 1.2.1
   | ldpred2.sif             | gctb                | 2.02
   | ldpred2.sif             | PRSice              | 2.3.5
+
+
+## Examples
+
+The directory `<ldpred2>/example` provides an example running the LDPred2 analysis. See README within.
 
 
 ## Building/rebuilding containers
