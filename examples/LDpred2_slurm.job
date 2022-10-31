@@ -8,7 +8,11 @@
 #SBATCH --mem-per-cpu=2000  # memory (MB)
 #SBATCH --partition=normal
 
-module load singularity  # load singularity
+# check if singularity is available, if not load it (adapt as necessary)
+if ! command -v singularity &> /dev/null
+then
+    module load singularity
+fi
 
 export SIF=$PWD/../containers/ldpred2.sif  # point to container file
 export R="singularity exec --home=$PWD:/home $SIF R"  # alias for R
