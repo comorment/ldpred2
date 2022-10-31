@@ -1,5 +1,8 @@
 # misc
 .DS_Store
+*.sbk
+*.rds
+*.bk
 
 # bash
 .bash_history
@@ -11,6 +14,17 @@ __pycache__
 
 # R
 .rda
+.Rhistory
+database.conf
 
 # Sphinx
 _build
+
+# tutorial script
+LDpred2_cache
+LDpred2_files
+LDpred2.pdf
+Rplots.pdf
+LDpred2.log
+LDpred2.tex
+

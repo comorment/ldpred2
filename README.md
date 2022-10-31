@@ -18,7 +18,7 @@ Revise the `<ldpred2>/.gitattributes` file as necessary. Some common file format
 
 ## Description of available containers
 
-* ``ldpred2`` - a container setup containing R dependencies for LDpred2
+* ``ldpred2`` - a container setup containing R dependencies for LDpred2 plus other tools for genetic analysis
 
 ## Software versions
 
@@ -29,18 +29,69 @@ Please keep up to date (and update the main `<ldpred2>/README.md` when pushing n
   | ------------------------| ------------------- | ----------------------------------------
   | ldpred2.sif             | ubuntu              | 20.04
   | ldpred2.sif             | rocker/verse (R)    | 4.2.1
-  | ldpred2.sif             | devtools            | 2.4.4
-  | ldpred2.sif             | bigreadr            | 0.2.4
-  | ldpred2.sif             | bigsnpr             | 1.10.8
-  | ldpred2.sif             | data.table          | 1.14.2
-  | ldpred2.sif             | DescTools           | 0.99.46
-  | ldpred2.sif             | dplyr               | 1.0.10
-  | ldpred2.sif             | ggplot2             | 3.3.5
-  | ldpred2.sif             | fmsb                | 0.7.3
-  | ldpred2.sif             | magrittr            | 2.0.3
-  | ldpred2.sif             | reghelper           | 1.1.1
-  | ldpred2.sif             | tibble              | 3.1.8
-  | ldpred2.sif             | tidyr               | 1.2.1
+  | ldpred2.sif             | devtools (R)        | 2.4.4
+  | ldpred2.sif             | bigreadr (R)        | 0.2.4
+  | ldpred2.sif             | bigsnpr (R)         | 1.11.4
+  | ldpred2.sif             | data.table (R)      | 1.14.2
+  | ldpred2.sif             | DescTools (R)       | 0.99.46
+  | ldpred2.sif             | dplyr (R)           | 1.0.10
+  | ldpred2.sif             | ggplot2 (R)         | 3.3.5
+  | ldpred2.sif             | fmsb (R)            | 0.7.3
+  | ldpred2.sif             | magrittr (R)        | 2.0.3
+  | ldpred2.sif             | reghelper (R)       | 1.1.1
+  | ldpred2.sif             | tibble (R)          | 3.1.8
+  | ldpred2.sif             | tidyr (R)           | 1.2.1
+  | ldpred2.sif             | gctb                | 2.02
+  | ldpred2.sif             | PRSice              | 2.3.5
+
+
+## Examples
+
+The directory `<ldpred2>/example` provides an example running the LDPred2 analysis. See README within.
+
+## Software aliases
+
+The container(s) provided here includes additional command line tools in addition to the R environment.
+It is possible to create short cuts (aliases) for interactive use in a terminal by issuing
+```
+export SIF=$PWD/containers/ldpred2.sif  # point to container file
+
+# R
+alias R="singularity exec --home=$PWD:/home $SIF R"
+R -e <script.R>  # execute script
+
+# plink
+alias plink2="singularity exec --home=$PWD:/home $SIF plink2"
+plink2 --arg1=<arg1> --arg2=<arg2>  # etc.
+
+# gctb
+alias gctb="singularity exec --home=$PWD:/home $SIF gctb"
+gctb --arg1=<arg1> --arg2=<arg2>  # etc.
+
+# PRSice
+alias PRSice="singularity exec --home=$PWD:/home $SIF PRSice"
+PRSice --arg1=<arg1> --arg2=<arg2>  # etc.
+```
+
+And so forth.
+
+The aliases will remain for the duration of the terminal session. 
+If you want them to stay for the next session, define them in your ``~/.bashrc`` or equivalent file.
+Make sure that the the path to the container file ``ldpred2.sif`` is correct. 
+
+## Software environment variables
+
+Similar to the aliases defined above, one can define environment variables and use them as
+
+```
+export SIF=$PWD/containers/ldpred2.sif  # point to container file
+export <BINARY>="singularity exec --home=$PWD:/home $SIF <BINARY>"
+$<BINARY> --arg1=<arg1> --arg2=<arg2>  # etc.
+```
+
+Replace ``<BINARY>`` by ``R``, ``plink2``, etc.
+
+This method can be more reliable for instance in Slurm job scripts (see examples directory)
 
 ## Building/rebuilding containers
 
