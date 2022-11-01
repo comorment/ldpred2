@@ -22,20 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - removals goes here
 
-## [MAJOR.MINOR.PATCH] - YYYY-MM-DD
+## [0.1] - 2022-11-01
 
 ### Added
 
-- additions goes here
+- Inaugural release version 0.1 of `containers/ldpred2.sif` container build and example file(s)
 
-### Updated
-
-- updates goes here
-
-### Fixed
-
-- fixes goes here
-
-### Removed
-
-- removals goes here
