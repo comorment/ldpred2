@@ -16,6 +16,18 @@ Revise the `<ldpred2>/.gitattributes` file as necessary. Some common file format
 [![Flake8 lint](https://github.com/espenhgn/ldpred2/actions/workflows/python.yml/badge.svg)](https://github.com/espenhgn/ldpred2/actions/workflows/python.yml)
 [![Dockerfile lint](https://github.com/espenhgn/ldpred2/actions/workflows/docker.yml/badge.svg)](https://github.com/espenhgn/ldpred2/actions/workflows/docker.yml)
 
+## Getting the files
+
+This git repository can be cloned like any other: 
+```
+git clone https://github.com/comorment/ldpred2.git
+```
+
+Downloading only the latest version:
+```
+git clone --depth 1 https://github.com/comorment/ldpred2.git
+```
+
 ## Description of available containers
 
 * ``ldpred2`` - a container setup containing R dependencies for LDpred2 plus other tools for genetic analysis
